@@ -8,9 +8,12 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 5f;
     public float jumpForce = 5f;
     public GameObject bulletClonetemplate;
+
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -22,18 +25,30 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
+            animator.SetBool("isJumping", true);
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+        }
+        else
+        {
+            animator.SetBool("isJumping", false);
         }
 
         if (Input.GetKey(KeyCode.W))
         {
-           rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
+            animator.SetBool("IsMoving", true);
+            rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed); 
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-           rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
+            
+            rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
         }
+
 
         if (Input.GetKey(KeyCode.S))
         {
@@ -42,14 +57,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
+            
+            rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed); 
         }
+       
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Instantiate(bulletClonetemplate, transform.position,transform.rotation);
         }
-        
-
+      
     }
 }
