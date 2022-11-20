@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/AnnaKovalenko_T00243622_Game1.unity
+    guid: a5d146b5e18893747846c1f5d8e3e1de
   m_configObjects: {}
